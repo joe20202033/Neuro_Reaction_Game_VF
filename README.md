@@ -1,7 +1,7 @@
 # Visual Discrimination Reaction Task (`game_VF.m`)
 
 ## Student & Project Metadata
-* **Author:** [Your Name]
+* **Author:** [Youssif Soliman - Paoula]
 * **Program:** M1 Neuroscience
 * **Course:** UE TechnEx (Université Claude Bernard Lyon 1)
 * **Date:** October 2026
