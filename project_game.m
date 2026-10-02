@@ -3,9 +3,9 @@
 % =========================================================================
 % Program Name:           game_VF.m
 % Context & Course:       M1 Neuroscience - UE TechnEx (Université Claude Bernard Lyon 1)
-% Authors & Contribution: Lead Developer (Game Architecture, GUI, Signal Processing)
+% Authors & Contribution: Youssif Soliman - Paoula 
 % Code & Octave Version:  GNU Octave v11.3.0
-% Date:                   02-Oct-2026 (DD-MMM-YYYY format)
+% Date:                   02-10-2026 (DD-MM-YYYY format)
 % AI/Sound/Image Sources: Built-in Octave graphics library & audio synthesizer (beep)
 %
 % -------------------------------------------------------------------------
