@@ -9,7 +9,7 @@
 
 ---
 
-##  
+
 
 ### Game Architecture & Core Mechanics
 * **Goal of the Game:** A neuroscience visual discrimination task measuring choice reaction time (CRT) and selective visual attention. Players must click the GREEN target as fast as possible while ignoring the RED distractor.
