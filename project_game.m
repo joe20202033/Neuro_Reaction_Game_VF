@@ -38,7 +38,7 @@
 % Word List / Text:       Internal strings hardcoded for instructional pop-ups.
 % Octave Version:         GNU Octave v11.3.0 (MinGW-w64 x86_64)
 % Code Version:           Version Final (game_VF.m - Revision 9.0 Fast Cartoon Edition)
-% Authors:                Youssif Soliman - Paola
+% Authors:                Youssif Soliman - Paola Ragusa
 % Date:                   08-10-2026 (Format: DD-MM-YYYY)
 % =========================================================================
 %
