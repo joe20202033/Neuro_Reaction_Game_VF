@@ -4,7 +4,7 @@
 * **Author:** Youssif Soliman - Paola
 * **Program:** M1 Neuroscience.
 * **Course:** UE TechnEx (Université Claude Bernard Lyon 1).
-* **Date:** 08-10-2026 (Format: DD-MM-YYYY).
+* **Date:** 08-10-2026.
 * **Environment:** GNU Octave v11.3.0.
 
 ---
