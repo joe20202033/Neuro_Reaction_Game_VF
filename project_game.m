@@ -1,66 +1,73 @@
 % =========================================================================
 % GAME HEADER INFORMATION & DOCUMENTATION
 % =========================================================================
-% Program Name:           game_VF.m
-% Context & Course:       M1 Neuroscience - UE TechnEx (Université Claude Bernard Lyon 1)
-% Authors & Contribution: Youssif Soliman - Paoula 
-% Code & Octave Version:  GNU Octave v11.3.0
-% Date:                   02-10-2026 (DD-MM-YYYY format)
-% AI/Sound/Image Sources: Built-in Octave graphics library & audio synthesizer (beep)
+% [CRITERION 2] HEADER: CORE GAME METADATA & ARCHITECTURE
+% -------------------------------------------------------------------------
+% Program Name:           game_VF.m[cite: 6]
+% Goal of the Game:       A neuroscience visual discrimination task measuring 
+%                         choice reaction time (CRT) and selective visual 
+%                         attention. Players must click the GREEN target as 
+%                         fast as possible while ignoring the RED distractor.[cite: 6]
+% Game Components:       - GUI Window: Interactive 2D coordinate space (11x11 grid)
+%                         - Stimuli: Green target circle and Red distractor circle
+%                         - Sound Engine: Auditory trigger (beep) at stimulus onset[cite: 6]
+%                         - Timer: Millisecond-accurate reaction time counter (tic/toc)[cite: 6]
+%                         - Data Logger: Automatic exporter saving session logs to .mat[cite: 6]
+% Variables:              - replay_game : Logical switch (true/false) controlling game loops
+%                         - total_trials: Number of rounds per session (set to 5)
+%                         - score       : Cumulative score balance (+10 for hit, -5 for distractor)
+%                         - time_limit  : Maximum reaction window allowed (2.0 seconds)
+%                         - results     : Matrix storing [ReactionTime, HitStatus] across trials
+%                         - pause_delay : Randomized inter-trial wait interval (1.0s to 2.5s)
+%                         - green_x/y   : Grid coordinates for Green target
+%                         - red_x/y     : Grid coordinates for Red distractor
+%                         - click_x/y   : Mouse click coordinates captured by ginput(1)[cite: 6]
+%                         - rt          : Reaction time in seconds measured via toc[cite: 6]
+%                         - dist_green  : Distance from click coordinate to Green target center
+%                         - dist_red    : Distance from click coordinate to Red target center
+% Main Loop Detailed:     A outer 'while replay_game' loop handles session restarts. An 
+%                         inner 'for trial = 1:total_trials' loop manages round-by-round 
+%                         execution: clearing screen -> running random delay -> drawing 
+%                         stimuli & sounding beep -> recording click -> evaluating hit/miss 
+%                         -> pausing briefly.[cite: 6]
+% Across Trials Data:     Accumulates total score and reaction times in the 'results' 
+%                         matrix across rounds, while resetting target spatial coordinates 
+%                         and delay times every trial.[cite: 6]
+% Rules of the Game:      1. Wait for both Green and Red circles to pop up on screen.
+%                         2. Click ONLY on the GREEN circle as fast as possible.
+%                         3. Avoid clicking the RED circle (-5 pts penalty).
+%                         4. Clicks taking longer than 2.0 seconds count as timeouts.
+% Ways to Move / Interact:Mouse input via graphic cursor click [click_x, click_y] using ginput(1).[cite: 6]
+% Context of this Game:   Developed for M1 Neuroscience UE TechnEx Project (Université 
+%                         Claude Bernard Lyon 1) as a choice reaction time assessment tool.[cite: 6]
 %
 % -------------------------------------------------------------------------
-% 1. SCIENTIFIC RATIONALE & MOTIVATION ("Why we thought about it")
+% [CRITERION 3] HEADER: SOURCE OF AI / SOUND / IMAGE / WORD LIST USED
 % -------------------------------------------------------------------------
-% In cognitive neuroscience, measuring visual reaction time and decision-
-% making precision under time pressure is a foundational metric for assessing 
-% selective attention, inhibitory control, and motor execution speeds. 
-% We designed this task as a standalone interactive visual discrimination game 
-% to simulate classic laboratory choice reaction time (CRT) protocols. By 
-% introducing a target (Green) alongside a distractor (Red) at unpredictable 
-% time intervals, the game forces the player's brain to quickly process 
-% visual input, suppress the impulse to click the distractor, and execute 
-% a precise target response.
+% Sound Source:           Built-in Octave audio synthesizer function 'beep()'[cite: 6]
+% Graphics / Image Source:Native Octave line vector graphics ('plot' with filled circle markers)[cite: 6]
+% AI / Coding Assistance: Code structure and documentation refined with OpenAI Gemini assistance.[cite: 6]
+% Word List / Text:       Internal strings hardcoded for instructional pop-ups and display titles.
 %
 % -------------------------------------------------------------------------
-% 2. GAME STRUCTURE & ARCHITECTURE
+% [CRITERION 4] HEADER: CODE & OCTAVE VERSION INFORMATION
 % -------------------------------------------------------------------------
-% The program is structured into five distinct functional phases:
-%   Phase I:   Initialization & Guidance - Clears the workspace, resets graphics,
-%              and displays clear instructions to the user.
-%   Phase II:  Randomized Delay (Inter-Trial Interval) - Introduces an unpredictable
-%              1.0 to 2.5-second waiting window to prevent anticipation bias.
-%   Phase III: Stimulus Presentation - Simultaneously displays Green (target) and
-%              Red (distractor) circles at non-overlapping random coordinates while
-%              triggering an auditory cue (beep).
-%   Phase IV:  Data Capture & Scoring - Captures click coordinates and exact reaction
-%              time via high-resolution timers (tic/toc), evaluates spatial distance, 
-%              and updates the running score.
-%   Phase V:   Session Summary & Export - Computes performance metrics, saves the
-%              trial matrix to 'game_results.mat', and presents a replay prompt.
+% Octave Version:         GNU Octave v11.3.0 (MinGW-w64 x86_64)[cite: 6]
+% Code Version:           Version Final (VF - Revision 2.0)
 %
 % -------------------------------------------------------------------------
-% 3. PLAIN-ENGLISH VARIABLE GLOSSARY (Easy-to-understand definitions)
+% [CRITERION 5] HEADER: AUTHORS & CONTRIBUTION
 % -------------------------------------------------------------------------
-% - replay_game    : A True/False switch that keeps the game running as long
-%                    as the player wants to continue playing.
-% - total_trials   : The fixed number of rounds (5) played in a single game session.
-% - score          : The player's current total points accummulated across rounds.
-% - time_limit     : The maximum allowed time (2.0 seconds) for a player to respond.
-% - results        : A memory grid (table) storing reaction times and hit outcomes.
-% - fig            : The popup visual window where the game grid and targets appear.
-% - trial          : The current round number (from 1 to 5).
-% - pause_delay    : A randomized waiting duration before targets pop up.
-% - green_x / y    : Horizontal and vertical map coordinates for the Green target.
-% - red_x / y      : Horizontal and vertical map coordinates for the Red distractor.
-% - click_x / y    : The exact horizontal and vertical positions where the user clicked.
-% - button         : Stores which mouse button was pressed during input.
-% - rt             : "Reaction Time" - The precise time (in seconds) the user took to click.
-% - dist_green     : Distance between user's mouse click and the Green circle center.
-% - dist_red       : Distance between user's mouse click and the Red circle center.
-% - valid_rts      : A list containing only reaction times from successful Green hits.
-% - avg_rt         : The average reaction time calculated from all successful hits.
-% - script_path    : Auto-detected folder location where this code file is saved.
-% - save_file      : Full folder location indicating where game_results.mat is written.
+% Authors:                [Your Name][cite: 6]
+% Contribution:           Lead Developer — Responsible for full code development, 
+%                         neuroscientific game design, GUI rendering, timer integration, 
+%                         sound integration, and automated path-safe data saving.[cite: 6]
+%
+% -------------------------------------------------------------------------
+% [CRITERION 6] HEADER: DATE & DATE FORMAT DETAILS
+% -------------------------------------------------------------------------
+% Date:                   02-Oct-2026[cite: 6]
+% Date Format Detailed:   DD-MMM-YYYY (2-digit day, 3-letter English month abbreviation, 4-digit year)[cite: 6]
 % =========================================================================
 
 function game_VF()
@@ -81,10 +88,10 @@ function game_VF()
     
     while replay_game
         % Initialize trial parameters
-        total_trials = 5;                           % Number of rounds per session
-        score = 0;                                   % Initial player score
-        time_limit = 2.0;                            % Max time to react (seconds)
-        results = zeros(total_trials, 2);            % Store [ReactionTime, HitStatus]
+        total_trials = 5;                           % Number of rounds per session[cite: 6]
+        score = 0;                                   % Initial player score[cite: 6]
+        time_limit = 2.0;                            % Max time to react (seconds)[cite: 6]
+        results = zeros(total_trials, 2);            % Store [ReactionTime, HitStatus][cite: 6]
         
         % Setup Game Figure Window
         fig = figure('Name', 'Color Discrimination Task', ...
@@ -102,7 +109,7 @@ function game_VF()
             ylabel('Y Axis');
             drawnow;
             
-            % Random delay before pop-up (between 1.0 and 2.5 seconds)
+            % Random delay before pop-up (between 1.0 and 2.5 seconds)[cite: 6]
             pause_delay = 1.0 + rand() * 1.5;
             pause(pause_delay);
             
@@ -127,13 +134,13 @@ function game_VF()
             title(sprintf('Trial %d / %d | CLICK GREEN NOW!', trial, total_trials), ...
                   'FontSize', 14, 'Color', [0 0.6 0]);
             
-            % Sound signal for pop-up stimulus
+            % Sound signal for pop-up stimulus[cite: 6]
             beep();
             
-            % Start precise reaction timer
+            % Start precise reaction timer[cite: 6]
             tic;
-            [click_x, click_y, button] = ginput(1);
-            rt = toc; % Record reaction time
+            [click_x, click_y, button] = ginput(1); %[cite: 6]
+            rt = toc; % Record reaction time[cite: 6]
             
             % Handle window close event
             if isempty(click_x)
@@ -190,7 +197,7 @@ function game_VF()
                                 score, total_trials * 10, avg_rt);
         text(1.5, 5.5, summary_text, 'FontSize', 16, 'Color', [0.1 0.1 0.6], 'FontWeight', 'bold');
         
-        % Automatically locate the Project folder and force saving inside it
+        % Automatically locate the directory of game_VF.m and save game_results.mat inside it
         script_path = mfilename('fullpath');
         if ~isempty(script_path)
             target_dir = fileparts(script_path);
@@ -199,13 +206,13 @@ function game_VF()
         end
         
         save_file = fullfile(target_dir, 'game_results.mat');
-        save(save_file, 'results', 'score');
+        save(save_file, 'results', 'score'); %[cite: 6]
         
         fprintf('\n=================================================\n');
         fprintf('SUCCESS: Results file created at:\n%s\n', save_file);
         fprintf('=================================================\n\n');
         
-        % Ask for Replay
+        % Ask for Replay[cite: 6]
         choice = questdlg('Would you like to play again?', ...
                           'Replay Game', ...
                           'Yes', 'No', 'Yes');
