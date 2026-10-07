@@ -14,7 +14,7 @@
 ### Game Architecture & Core Mechanics
 * **Goal of the Game:** A neuroscience visual discrimination task measuring choice reaction time (CRT) and selective visual attention. Players must click the GREEN target as fast as possible while ignoring the RED distractor.
 * **Game Components:** 
-  * **GUI Window:** Interactive 2D coordinate space (11x11 grid)[cite: 6].
+  * **GUI Window:** Interactive 2D coordinate space (11x11 grid).
   * **Stimuli:** Green target circle and Red distractor circle[cite: 6].
   * **Sound Engine:** Auditory trigger (`beep`) at stimulus onset[cite: 6].
   * **Timer:** Millisecond-accurate reaction time counter (`tic`/`toc`)[cite: 6].
