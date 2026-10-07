@@ -1,7 +1,7 @@
 % =========================================================================
 % GAME HEADER INFORMATION & DOCUMENTATION
 % =========================================================================
-% [CRITERION 2] HEADER: CORE GAME METADATA & ARCHITECTURE
+% HEADER: CORE GAME METADATA & ARCHITECTURE
 % -------------------------------------------------------------------------
 % Program Name:           game_VF.m[cite: 6]
 % Goal of the Game:       A neuroscience visual discrimination task measuring 
@@ -42,7 +42,7 @@
 %                         Claude Bernard Lyon 1) as a choice reaction time assessment tool.[cite: 6]
 %
 % -------------------------------------------------------------------------
-% [CRITERION 3] HEADER: SOURCE OF AI / SOUND / IMAGE / WORD LIST USED
+% SOURCE OF AI / SOUND / IMAGE / WORD LIST USED
 % -------------------------------------------------------------------------
 % Sound Source:           Built-in Octave audio synthesizer function 'beep()'[cite: 6]
 % Graphics / Image Source:Native Octave line vector graphics ('plot' with filled circle markers)[cite: 6]
@@ -50,13 +50,13 @@
 % Word List / Text:       Internal strings hardcoded for instructional pop-ups and display titles.
 %
 % -------------------------------------------------------------------------
-% [CRITERION 4] HEADER: CODE & OCTAVE VERSION INFORMATION
+% CODE & OCTAVE VERSION INFORMATION
 % -------------------------------------------------------------------------
 % Octave Version:         GNU Octave v11.3.0 (MinGW-w64 x86_64)[cite: 6]
 % Code Version:           Version Final (VF - Revision 2.0)
 %
 % -------------------------------------------------------------------------
-% [CRITERION 5] HEADER: AUTHORS & CONTRIBUTION
+% AUTHORS & CONTRIBUTION
 % -------------------------------------------------------------------------
 % Authors:                Youssif Soliman - Paoula [cite: 6]
 % Contribution:           Lead Developer — Responsible for full code development, 
@@ -64,7 +64,7 @@
 %                         sound integration, and automated path-safe data saving.[cite: 6]
 %
 % -------------------------------------------------------------------------
-% [CRITERION 6] HEADER: DATE & DATE FORMAT DETAILS
+% DATE & DATE FORMAT DETAILS
 % -------------------------------------------------------------------------
 % Date: 08-10-2026[cite: 6]
 % =========================================================================
