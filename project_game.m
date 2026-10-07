@@ -1,7 +1,7 @@
 % =========================================================================
 % GAME HEADER INFORMATION & DOCUMENTATION
 % =========================================================================
-% HEADER: CORE GAME METADATA & ARCHITECTURE
+% CORE GAME METADATA & ARCHITECTURE
 % -------------------------------------------------------------------------
 % Program Name:           game_VF.m[cite: 6]
 % Goal of the Game:       A neuroscience visual discrimination task measuring 
