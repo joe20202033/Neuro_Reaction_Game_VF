@@ -1,6 +1,6 @@
 # 🎮 Cartoon Blitz: Neuroscience Choice Reaction Time Task
 
-An interactive cognitive neuroscience visual discrimination experiment built in **GNU Octave / MATLAB**. This task measures **Choice Reaction Time (CRT)**, visual processing speed, and response inhibition through cartoon-styled stimuli, synthesized audio cues, dynamic action effects, and trial-by-trial data logging.
+An interactive cognitive neuroscience visual discrimination experiment built in **GNU Octave**. This task measures **Choice Reaction Time (CRT)**, visual processing speed, and response inhibition through cartoon-styled stimuli, synthesized audio cues, dynamic action effects, and trial-by-trial data logging.
 
 ---
 
