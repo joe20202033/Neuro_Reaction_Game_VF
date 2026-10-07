@@ -15,9 +15,14 @@
 %                         - Data Logger: Automatic exporter saving session logs to .mat
 % Variables:              - replay_game : Switch controlling main game loop
 %                         - total_trials: Number of rounds per session (set to 5)
-%                         - score       : Cumulative player score balance
-%                         - time_limit  : Rapid reaction window (1.2 seconds)
-%                         - results     : Matrix storing [ReactionTime, HitStatus]
+%                         - score       : Cumulative score balance (+10 for hit, -5 for distractor)
+%                         - time_limit  : Maximum reaction window allowed (1.2 seconds)
+%                         - results     : Matrix storing [ReactionTime, HitStatus] across trials
+%                         - pause_delay : Randomized inter-trial wait interval (0.5s to 1.2s)
+%                         - green_x/y   : Grid coordinates for Green target
+%                         - red_x/y     : Grid coordinates for Red distractor
+%                         - click_x/y   : Mouse click coordinates captured by ginput(1)
+%                         - rt          : Reaction time in seconds measured via toc
 % Main Loop Detailed:     Outer 'while replay_game' handles session restarts. Inner loop 
 %                         clears screen -> delays 0.5s-1.2s -> renders cartoon monster & bomb 
 %                         -> records fast click/timeout -> displays 0.6s POW/BOOM feedback -> saves data.
