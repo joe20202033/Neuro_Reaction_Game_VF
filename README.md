@@ -9,7 +9,7 @@
 
 ---
 
-## 1. Neuroscientific Rationale ("Why We Thought About It")
+## 1. Neuroscientific Rationale 
 In cognitive neuroscience, choice reaction time (CRT) protocols are essential tools used to evaluate **selective visual attention**, **inhibitory control**, and **sensorimotor processing speed**. 
 
 This interactive game was designed as a laboratory-style paradigm where players must process two visual stimuli presented simultaneously under time constraints:
