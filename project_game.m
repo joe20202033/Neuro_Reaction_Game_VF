@@ -58,7 +58,7 @@
 % -------------------------------------------------------------------------
 % [CRITERION 5] HEADER: AUTHORS & CONTRIBUTION
 % -------------------------------------------------------------------------
-% Authors:                [Your Name][cite: 6]
+% Authors:                Youssif Soliman - Paoula [cite: 6]
 % Contribution:           Lead Developer — Responsible for full code development, 
 %                         neuroscientific game design, GUI rendering, timer integration, 
 %                         sound integration, and automated path-safe data saving.[cite: 6]
@@ -66,8 +66,7 @@
 % -------------------------------------------------------------------------
 % [CRITERION 6] HEADER: DATE & DATE FORMAT DETAILS
 % -------------------------------------------------------------------------
-% Date:                   02-Oct-2026[cite: 6]
-% Date Format Detailed:   DD-MMM-YYYY (2-digit day, 3-letter English month abbreviation, 4-digit year)[cite: 6]
+% Date: 08-10-2026[cite: 6]
 % =========================================================================
 
 function game_VF()
